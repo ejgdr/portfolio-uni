@@ -1,0 +1,25 @@
+{
+  "name": "Ema Guillen",
+  "title": "Software Engineering Student",
+  "email": "emajguillen@gmail.com",
+  "tagline": "Building Quality Software | QA Enthusiast | Full-Stack Developer",
+  "bio": "Software Engineering student at BYU-Idaho. Passionate about software quality, testing automation, and building robust applications. Currently seeking Summer 2026 internship opportunities.",
+  "socials": [
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ema-guillen/",
+      "icon": "linkedin"
+    },
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/ejgdr",
+      "icon": "github"
+    },
+    {
+      "platform": "Email",
+      "url": "mailto:emajguillen@gmail.com",
+      "icon": "email"
+    }
+  ],
+  "resumeUrl": "/resume/EmaGuillen_Resume.pdf"
+}
