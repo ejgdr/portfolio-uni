@@ -1,10 +1,11 @@
 export function createHeader(): HTMLElement {
   const header = document.createElement('header');
+  const baseUrl = import.meta.env.BASE_URL;
   header.className = 'header';
   header.innerHTML = `
     <div class="container header-container">
       <div class="header-logo">
-        <img src="/images/LogoIcon.png" alt="EJGR Logo" />
+        <img src="${baseUrl}/images/LogoIcon.png" alt="EJGR Logo" />
         <span>EJGR</span>
       </div>
       

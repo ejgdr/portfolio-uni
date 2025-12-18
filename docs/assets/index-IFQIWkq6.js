@@ -1,7 +1,7 @@
-(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))a(n);new MutationObserver(n=>{for(const o of n)if(o.type==="childList")for(const i of o.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function r(n){const o={};return n.integrity&&(o.integrity=n.integrity),n.referrerPolicy&&(o.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?o.credentials="include":n.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function a(n){if(n.ep)return;n.ep=!0;const o=r(n);fetch(n.href,o)}})();function v(){const e=document.createElement("header");e.className="header",e.innerHTML=`
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))a(n);new MutationObserver(n=>{for(const o of n)if(o.type==="childList")for(const i of o.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function r(n){const o={};return n.integrity&&(o.integrity=n.integrity),n.referrerPolicy&&(o.referrerPolicy=n.referrerPolicy),n.crossOrigin==="use-credentials"?o.credentials="include":n.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function a(n){if(n.ep)return;n.ep=!0;const o=r(n);fetch(n.href,o)}})();function v(){const e=document.createElement("header"),t="/portfolio-uni/";e.className="header",e.innerHTML=`
     <div class="container header-container">
       <div class="header-logo">
-        <img src="/images/LogoIcon.png" alt="EJGR Logo" />
+        <img src="${t}/images/LogoIcon.png" alt="EJGR Logo" />
         <span>EJGR</span>
       </div>
       
@@ -31,9 +31,9 @@
         </svg>
       </button>
     </div>
-  `;const t=e.querySelector("#mobileMenuBtn"),r=e.querySelector("#headerNav");return t?.addEventListener("click",()=>{r?.classList.toggle("active")}),e.querySelectorAll(".header-nav a").forEach(n=>{n.addEventListener("click",()=>{r?.classList.remove("active")})}),e}function g(e){const t=document.createElement("section");return t.className="hero section",t.innerHTML=`
+  `;const r=e.querySelector("#mobileMenuBtn"),a=e.querySelector("#headerNav");return r?.addEventListener("click",()=>{a?.classList.toggle("active")}),e.querySelectorAll(".header-nav a").forEach(o=>{o.addEventListener("click",()=>{a?.classList.remove("active")})}),e}function g(e){const t=document.createElement("section"),r="/portfolio-uni/";return t.className="hero section",t.innerHTML=`
     <div class="container hero-content">
-      <img src="/images/LogoProfile.png" alt="${e.name}" class="hero-logo" />
+      <img src="${r}/images/LogoProfile.png" alt="${e.name}" class="hero-logo" />
       
       <div>
         <h1 class="hero-title">${e.name}</h1>
@@ -49,7 +49,7 @@
           View Projects
         </a>
         
-        <a href="${e.resumeUrl}" class="btn btn-secondary" download>
+        <a href="${r}${e.resumeUrl}" class="btn btn-secondary" download>
           <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
@@ -106,14 +106,14 @@
         </div>
       </div>
     </div>
-  `}function d(e){const t={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"};return e.replace(/[&<>"']/g,r=>t[r])}function w(){const e=document.getElementById("codeModal"),t=document.getElementById("codeModalTitle"),r=document.getElementById("codeModalCode")?.querySelector("code"),a=document.querySelector(".code-modal-close"),n=document.querySelectorAll(".code-preview");if(!e||!t||!r||!a)return;n.forEach(i=>{i.addEventListener("click",()=>{const l=i.getAttribute("data-project-title")||"",s=i.getAttribute("data-project-code")||"";t.textContent=l+" - Code Snippet",r.textContent=s,e.classList.add("active"),document.body.style.overflow="hidden"})});const o=()=>{e.classList.remove("active"),document.body.style.overflow=""};a.addEventListener("click",o),e.addEventListener("click",i=>{i.target===e&&o()}),document.addEventListener("keydown",i=>{i.key==="Escape"&&e.classList.contains("active")&&o()})}function b(e){const t=document.createElement("section");return t.id="resume",t.className="section resume-section",t.innerHTML=`
+  `}function d(e){const t={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"};return e.replace(/[&<>"']/g,r=>t[r])}function w(){const e=document.getElementById("codeModal"),t=document.getElementById("codeModalTitle"),r=document.getElementById("codeModalCode")?.querySelector("code"),a=document.querySelector(".code-modal-close"),n=document.querySelectorAll(".code-preview");if(!e||!t||!r||!a)return;n.forEach(i=>{i.addEventListener("click",()=>{const l=i.getAttribute("data-project-title")||"",s=i.getAttribute("data-project-code")||"";t.textContent=l+" - Code Snippet",r.textContent=s,e.classList.add("active"),document.body.style.overflow="hidden"})});const o=()=>{e.classList.remove("active"),document.body.style.overflow=""};a.addEventListener("click",o),e.addEventListener("click",i=>{i.target===e&&o()}),document.addEventListener("keydown",i=>{i.key==="Escape"&&e.classList.contains("active")&&o()})}function b(e){const t=document.createElement("section"),r="/portfolio-uni/";return t.id="resume",t.className="section resume-section",t.innerHTML=`
     <div class="container resume-content">
       <h2 class="section-title">About Me</h2>
       
       <p class="resume-bio">${e.bio}</p>
       
       <div class="resume-actions">
-        <a href="${e.resumeUrl}" class="btn btn-primary" download>
+        <a href="${r}${e.resumeUrl}" class="btn btn-primary" download>
           <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
