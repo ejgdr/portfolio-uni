@@ -4,7 +4,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/portfolio-uni/', // Use relative paths for GitHub Pages
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     assetsDir: 'assets',
     emptyOutDir: true,
   },
