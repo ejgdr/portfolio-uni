@@ -457,6 +457,17 @@ pre code {
   font-weight: var(--font-weight-bold);
 }
 
+.project-lessons .inline-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  font-weight: var(--font-weight-medium);
+}
+
+.project-lessons .inline-link:hover {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
 /* Code Modal Overlay */
 .code-modal {
   display: none;

@@ -57,7 +57,7 @@ function createProjectCard(project: Project, index: number): string {
         <div class="project-lessons">
           <h4>Key Learnings</h4>
           <ul>
-            ${project.lessonsLearned.map(lesson => `<li>${lesson}</li>`).join('')}
+            ${project.lessonsLearned.map(lesson => `<li>${linkifyText(lesson)}</li>`).join('')}
           </ul>
         </div>
       </div>
@@ -74,6 +74,13 @@ function escapeHtml(text: string): string {
     "'": '&#039;'
   };
   return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+function linkifyText(text: string): string {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, (url) => {
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-link">${url}</a>`;
+  });
 }
 
 function setupCodeModalHandlers(): void {
