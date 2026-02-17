@@ -4,14 +4,14 @@
     "title": "Pack Whisperer E-Commerce Platform",
     "videoUrl": "https://www.youtube.com/embed/Zi-FUmg6xpw",
     "technologies": ["Flutter", "Dart", "Firebase", "Stripe", "Cloudflare", "Supabase"],
-    "story": "Developed a cross-platform e-commerce solution for outdoor gear enthusiasts. The application features a comprehensive product catalog, real-time inventory management, and secure payment processing. Built with Flutter to ensure consistent user experience across iOS, Android, and web platforms.",
+    "story": "Developed a <b>cross-platform e-commerce solution</b> for outdoor gear enthusiasts. The application features a comprehensive product catalog, real-time inventory management, and secure payment processing. Built with Flutter to ensure consistent user experience across iOS, Android, and web platforms.",
     "partialCode": "async function handleStripeWebhook(request, env, corsHeaders) {\r\n  try {\r\n    let rawBody = await request.text();\r\n    \/\/ Verify webhook signature\r\n    if (env.STRIPE_WEBHOOK_SECRET) {\r\n      const signature = request.headers.get('stripe-signature');\r\n      if (!signature) {\r\n        throw new Error('Missing stripe-signature header');\r\n      }\r\n      const verified = await verifyStripeSignature(rawBody, signature, env.STRIPE_WEBHOOK_SECRET, 300);\r\n      if (!verified.ok) {\r\n        return new Response(\r\n          JSON.stringify({ error: verified.error || 'Invalid Stripe signature' }),\r\n          { status: 400, headers: corsHeaders }\r\n        );\r\n      }\r\n    }\r\n\r\n    const event = JSON.parse(rawBody || '{}');\r\n\r\n    if (event.type === 'payment_intent.succeeded') {\r\n      const pi = event.data.object;\r\n      console.log('[Webhook] Payment intent succeeded');\r\n      await maybeCreateOrderFromMetadata(pi, env);\r\n    } else if (event.type === 'payment_intent.payment_failed') {\r\n      console.log('[Webhook] Payment failed');\r\n    } else {\r\n      console.log('[Webhook] Unhandled event type:', event.type);\r\n    }\r\n    \r\n    return new Response(\r\n      JSON.stringify({ ok: true, received: true }),\r\n      { headers: corsHeaders }\r\n    );\r\n  } catch (error) {\r\n    return new Response(\r\n      JSON.stringify({ error: error.message }), \r\n      { status: 400, headers: corsHeaders }\r\n    );\r\n  }\r\n}",
     "lessonsLearned": [
-      "Serverless Microservices Architecture: Cloudflare Workers for products, payments, orders + API gateway for routing and rate limiting",
-      "Cross-platform App: Single Flutter codebase supporting Android, iOS, and Web",
-      "Tech Stack Integration: Firebase + Cloudflare Workers + Stripe payments",
-      "Real-time Inventory Management: CRUD operations for products with immediate updates",
-      "Order Management Panel: Order status updates, tracking, admin oversight",
+      "<b>Serverless Microservices Architecture:</b> Cloudflare Workers for products, payments, orders + API gateway for routing and rate limiting",
+      "<b>Cross-platform App:</b> Single Flutter codebase supporting Android, iOS, and Web",
+      "<b>Tech Stack Integration:</b> Firebase + Cloudflare Workers + Stripe payments",
+      "<b>Real-time Inventory Management:</b> CRUD operations for products with immediate updates",
+      "<b>Order Management Panel:</b> Order status updates, tracking, admin oversight",
       "This project is still live, so check it out! https://packwhisperer.com"
     ]
   },
@@ -20,13 +20,13 @@
     "title": "Crypto Idle Mining Game with ApexCharts",
     "videoUrl": "https://www.youtube.com/embed/TBvWNGk7U6Q",
     "technologies": ["HTML5", "CSS", "JavaScript", "ApexCharts", "LocalStorage"],
-    "story": "Built an idle mining game featuring tier-based progression and real-time data visualization. Implemented ApexCharts for displaying mining rates, currency accumulation, and tier progression. Demonstrated Software Development Life Cycle principles including requirements analysis, design, implementation, testing, and maintenance.",
+    "story": "Built an idle mining game featuring <b>tier-based progression</b> and <b>real-time data visualization</b>. Implemented ApexCharts for displaying mining rates, currency accumulation, and tier progression. Demonstrated Software Development Life Cycle principles including requirements analysis, design, implementation, testing, and maintenance.",
     "partialCode": "\/**\r\n * Start live updates for charts and stats\r\n *\/\r\nfunction startLiveUpdates() {\r\n  liveUpdateInterval = setInterval(() => {\r\n    \/\/ Update Hash Power chart\r\n    if (hashPowerChart && gameState.history.hashRate.length > 0) {\r\n      const latestData = gameState.history.hashRate.map(point => ({\r\n        x: point.x,\r\n        y: point.y\r\n      }));\r\n      hashPowerChart.updateSeries([{\r\n        data: latestData\r\n      }]);\r\n    }\r\n\r\n    \/\/ Update Production Rate chart\r\n    if (productionRateChart && gameState.history.cryptoRate.length > 0) {\r\n      const latestCryptoData = gameState.history.cryptoRate.map(point => ({\r\n        x: point.x,\r\n        y: point.y\r\n      }));\r\n      productionRateChart.updateSeries([{\r\n        data: latestCryptoData\r\n      }]);\r\n    }\r\n\r\n    \/\/ Update Crypto Balance chart\r\n    if (cryptoBalanceChart && gameState.history.cryptoBalance.length > 0) {\r\n      const latestBalanceData = gameState.history.cryptoBalance.map(point => ({\r\n        x: point.x,\r\n        y: point.y\r\n      }));\r\n      cryptoBalanceChart.updateSeries([{\r\n        data: latestBalanceData\r\n      }]);\r\n    }\r\n\r\n    \/\/ Update live stats display\r\n    const hashRate = calculateHashRate(gameState);\r\n    const difficulty = calculateDifficulty(gameState);\r\n    const cryptoPerSec = calculateCyptoPerSecond(hashRate, difficulty);\r\n\r\n    const liveBalanceEl = document.getElementById('liveBalance');\r\n    const liveRateEl = document.getElementById('liveRate');\r\n    const liveHashEl = document.getElementById('liveHash');\r\n\r\n    if (liveBalanceEl) liveBalanceEl.textContent = formatNumber(gameState.crypto);\r\n    if (liveRateEl) liveRateEl.textContent = formatNumber(cryptoPerSec, 6);\r\n    if (liveHashEl) liveHashEl.textContent = formatHashRate(hashRate);\r\n  }, 1000); \/\/ Update every second\r\n}\r\n\r\n\/**\r\n * Stop live updates\r\n *\/\r\nfunction stopLiveUpdates() {\r\n  if (liveUpdateInterval) {\r\n    clearInterval(liveUpdateInterval);\r\n    liveUpdateInterval = null;\r\n  }\r\n}",
     "lessonsLearned": [
-      "Persistent Game State: Implemented localStorage save/load system to preserve player progress across sessions",
-      "Multi-view Architecture: Created separate views (Main, Upgrades, Live Stats) with smooth view switching",
-      "ApexCharts Integration: Implemented three live-updating charts (Hash Power, Production Rate, Balance) using a third-party library",
-      "Vanilla JavaScript: No frameworks, pure DOM manipulation and event handling for lightweight performance"
+      "<b>Cross-platform App:</b> Single Flutter codebase supporting Android, iOS, and Web",
+      "<b>Multi-view Architecture:</b> Created separate views (Main, Upgrades, Live Stats) with smooth view switching",
+      "<b>ApexCharts Integration:</b> Implemented three live-updating charts (Hash Power, Production Rate, Balance) using a third-party library",
+      "<b>Vanilla JavaScript:</b> No frameworks, pure DOM manipulation and event handling for lightweight performance"
     ]
   },
   {
@@ -34,14 +34,14 @@
     "title": "Zenith Horizon University Management System",
     "videoUrl": "https://www.youtube.com/embed/XvYvK8GpmXg",
     "technologies": ["ASP.NET Core 5 MVC", "SQL Server", "Entity Framework", "Razor Views", "Bootstrap"],
-    "story": "A fully functional ASP.NET Core MVC 5 web application that manages a university system with a modern, visually appealing interface. The project demonstrates a complete implementation of CRUD operations, relational database management, and responsive web design.",
+    "story": "A fully functional <b>ASP.NET Core MVC 5 web application</b> that manages a university system with a modern, visually appealing interface. The project demonstrates a complete implementation of CRUD operations, relational database management, and responsive web design.",
     "partialCode": "namespace ContosoUniversity.Controllers\r\n{\r\n    public class HomeController : Controller\r\n    {\r\n        private readonly ILogger<HomeController> _logger;\r\n        private readonly SchoolContext _context;\r\n\r\n        public HomeController(ILogger<HomeController> logger, SchoolContext context)\r\n        {\r\n            _logger = logger;\r\n            _context = context;\r\n        }\r\n\r\n        public IActionResult Index()\r\n        {\r\n            return View();\r\n        }\r\n\r\n        public IActionResult Privacy()\r\n        {\r\n            return View();\r\n        }\r\n\r\n        public async Task<ActionResult> About()\r\n        {\r\n            List<EnrollmentDateGroup> groups = new List<EnrollmentDateGroup>();\r\n            var conn = _context.Database.GetDbConnection();\r\n            try\r\n            {\r\n                await conn.OpenAsync();\r\n                using (var command = conn.CreateCommand())\r\n                {\r\n                    string query = \"SELECT EnrollmentDate, COUNT(*) AS StudentCount \"\r\n                        + \"FROM Person \"\r\n                        + \"WHERE Discriminator = 'Student' \"\r\n                        + \"GROUP BY EnrollmentDate\";\r\n                    command.CommandText = query;\r\n                    DbDataReader reader = await command.ExecuteReaderAsync();\r\n\r\n                    if (reader.HasRows)\r\n                    {\r\n                        while (await reader.ReadAsync())\r\n                        {\r\n                            var row = new EnrollmentDateGroup { EnrollmentDate = reader.GetDateTime(0), StudentCount = reader.GetInt32(1) };\r\n                            groups.Add(row);\r\n                        }\r\n                    }\r\n                    reader.Dispose();\r\n                }\r\n            }\r\n            finally\r\n            {\r\n                conn.Close();\r\n            }\r\n            return View(groups);\r\n        }\r\n\r\n        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]\r\n        public IActionResult Error()\r\n        {\r\n            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });\r\n        }\r\n    }\r\n}",
     "lessonsLearned": [
-      "Entity framework relationships are complex but powerful",
-      "TryUpdateModelAsync is a more secure than binding entire models to prevent overposting attacks",
-      "User experience matters: implemented Bootstrap for responsive and modern UI design",
-      "Database initialization and seeding are crucial for testing and development purposes",
-      "Comprehensive understanding of ASP.NET Core MVC architecture and routing mechanisms saved development time and improved maintainability"
+      "<b>Entity Framework Relationships:</b> Complex but powerful",
+      "<b>TryUpdateModelAsync Security:</b> More secure than binding entire models to prevent overposting attacks",
+      "<b>User Experience:</b> Implemented Bootstrap for responsive and modern UI design",
+      "<b>Database Initialization:</b> Crucial for testing and development purposes",
+      "<b>MVC Architecture:</b> Comprehensive understanding of ASP.NET Core MVC architecture and routing mechanisms saved development time and improved maintainability"
     ]
   }
 ]

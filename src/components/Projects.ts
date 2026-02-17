@@ -47,7 +47,7 @@ function createProjectCard(project: Project, index: number): string {
           ${project.technologies.map(tech => `<span class="badge">${tech}</span>`).join('')}
         </div>
         
-        <p class="project-story">${project.story}</p>
+        <p class="project-story">${formatText(project.story)}</p>
         
         <div class="project-code">
           <h4>Code Snippet <span class="code-expand-hint">(click to expand)</span></h4>
@@ -57,7 +57,7 @@ function createProjectCard(project: Project, index: number): string {
         <div class="project-lessons">
           <h4>Key Learnings</h4>
           <ul>
-            ${project.lessonsLearned.map(lesson => `<li>${linkifyText(lesson)}</li>`).join('')}
+            ${project.lessonsLearned.map(lesson => `<li>${formatText(lesson)}</li>`).join('')}
           </ul>
         </div>
       </div>
@@ -76,11 +76,12 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, m => map[m]);
 }
 
-function linkifyText(text: string): string {
+function formatText(text: string): string {
   const urlRegex = /(https?:\/\/[^\s]+)/g;
-  return text.replace(urlRegex, (url) => {
+  let formatted = text.replace(urlRegex, (url) => {
     return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-link">${url}</a>`;
   });
+  return formatted;
 }
 
 function setupCodeModalHandlers(): void {
